@@ -1,0 +1,32 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class ButtonActionListener implements ActionListener{
+	public void actionPerformed (ActionEvent e) {
+		JButton button = (JButton)e.getSource();
+		String buttonName = e.getActionCommand();
+		if (buttonName.equals("click")) {
+			JOptionPane.showMessageDialog(null, "Button clicked!", "Message", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+}
+
+class ActionEventFrame extends JFrame {
+	ActionEventFrame () {
+		super ();
+		setTitle ("Demo");
+		setBounds (100, 100, 300, 200);
+		setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+		JButton ClickButton = new JButton("Click");
+		ClickButton.addActionListener(new ButtonActionListener());
+		getContentPane().add (ClickButton, BorderLayout.SOUTH);
+		this.setVisible (true);
+	}
+}
+
+public class ButtonActionEventDemo {
+	public static void main (String[] args) {
+		ActionEventFrame actionEventFrame = new ActionEventFrame ();
+	}
+}

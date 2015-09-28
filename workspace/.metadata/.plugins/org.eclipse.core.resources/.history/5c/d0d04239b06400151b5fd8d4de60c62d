@@ -1,0 +1,39 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class TopLevelDemo {
+	private static void createAndShowGUI() {
+		JFrame frame = new JFrame ("504 Project");
+		frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+		//JMenuBar greenMenuBar = new JMenuBar ();
+		//greenMenuBar.setOpaque (true);
+		//greenMenuBar.setBackground (new Color (160, 160, 160));
+		//greenMenuBar.setPreferredSize (new Dimension (200, 20));
+		JPanel pane1 = new JPanel ();
+		JPanel pane2 = new JPanel ();
+		//pane.setOpaque (true);
+		//pane.setBackground (new Color (255, 255, 255));
+		//pane.setPreferredSize (new Dimension (200, 180));
+		//pane.setLayout (new GridBagLayout());
+		JTextField text = new JTextField ("abcd");
+		text.setPreferredSize (new Dimension (200, 50));
+		pane1.add (text);
+		JButton click = new JButton("Click");
+		click.setPreferredSize (new Dimension (200, 40));
+		pane2.add (click);
+		//frame.setJMenuBar (greenMenuBar);
+		pane1.add(click);
+		pane2.add(text);
+		frame.getContentPane ().add(pane1, pane2);
+		frame.pack();
+		frame.setVisible(true);
+	}
+	public static void main (String [] args) {
+		javax.swing.SwingUtilities.invokeLater (new Runnable () {
+			public void run () {
+				createAndShowGUI();
+			}
+		});
+	}
+}

@@ -1,5 +1,3 @@
 # EC504Project
 
-try
-
-another try
+We keep this as a documentation of what we are doing here.

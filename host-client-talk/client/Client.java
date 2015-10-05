@@ -27,7 +27,7 @@ public class Client implements Runnable {
                 out.println(input);//SEND IT TO THE SERVER
                 out.flush();//FLUSH THE STREAM
                  
-                if(in.hasNext())//IF THE SERVER SENT US SOMETHING
+                //if(in.hasNext())//IF THE SERVER SENT US SOMETHING
                     System.out.println(in.nextLine());//PRINT IT OUT
             }
         }

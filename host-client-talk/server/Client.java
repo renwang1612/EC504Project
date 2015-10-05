@@ -27,12 +27,12 @@ public class Client implements Runnable{
 
             while (true) { 
                 //WHILE THE PROGRAM IS RUNNING
+                String serverTalk = chat.nextLine();
+                System.out.println("Server Said: " + serverTalk);//PRINT IT OUT TO THE SCREEN
                 if (in.hasNext()) {
                     String input = in.nextLine();//IF THERE IS INPUT THEN MAKE A NEW VARIABLE input AND READ WHAT THEY TYPED
-                    String serverTalk = chat.nextLine();
                     System.out.println("Client Said: " + input);//PRINT IT OUT TO THE SCREEN
-                    System.out.println("Server talk: " + serverTalk);//PRINT IT OUT TO THE SCREEN
-                    out.println("Server Said: " + serverTalk);//RESEND IT TO THE CLIENT
+                    out.println("Server send: " + serverTalk);//RESEND IT TO THE CLIENT
                     out.flush();//FLUSH THE STREAM
                 }
             }

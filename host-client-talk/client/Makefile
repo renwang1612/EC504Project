@@ -6,7 +6,7 @@ all:run
 %.class:%.java
 	javac $<
 
-run:$(target_class) kill
+run:$(target_class) 
 	java Main 
 
 kill:

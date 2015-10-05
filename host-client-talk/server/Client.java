@@ -17,6 +17,8 @@ public class Client implements Runnable{
         //(IMPLEMENTED FROM THE RUNNABLE INTERFACE)
     
         try { 
+            // Here is my modification: the server can also talk to the client
+            Scanner chat  = new Scanner(System.in) ;
             //HAVE TO HAVE THIS FOR THE in AND out VARIABLES
             Scanner in = new Scanner(socket.getInputStream());
             //GET THE SOCKETS INPUT STREAM (THE STREAM THAT YOU WILL GET WHAT THEY TYPE FROM)
@@ -27,8 +29,10 @@ public class Client implements Runnable{
                 //WHILE THE PROGRAM IS RUNNING
                 if (in.hasNext()) {
                     String input = in.nextLine();//IF THERE IS INPUT THEN MAKE A NEW VARIABLE input AND READ WHAT THEY TYPED
+                    String serverTalk = chat.nextLine();
                     System.out.println("Client Said: " + input);//PRINT IT OUT TO THE SCREEN
-                    out.println("You Said: " + input);//RESEND IT TO THE CLIENT
+                    System.out.println("Server talk: " + serverTalk);//PRINT IT OUT TO THE SCREEN
+                    out.println("Server Said: " + serverTalk);//RESEND IT TO THE CLIENT
                     out.flush();//FLUSH THE STREAM
                 }
             }

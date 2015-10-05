@@ -23,6 +23,7 @@ public class Client implements Runnable {
             while (true)//WHILE THE PROGRAM IS RUNNING
             {                      
                 String input = chat.nextLine(); //SET NEW VARIABLE input TO THE VALUE OF WHAT THE CLIENT TYPED IN
+                System.out.println("Client Said: " + input);//PRINT IT OUT TO THE SCREEN 
                 out.println(input);//SEND IT TO THE SERVER
                 out.flush();//FLUSH THE STREAM
                  

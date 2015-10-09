@@ -17,6 +17,11 @@ public class Client implements Runnable{
         //(IMPLEMENTED FROM THE RUNNABLE INTERFACE)
     
         try { 
+            while (true) {
+                readFromCmd cmdline             = new readFromCmd () ;
+                msgSentFromClient readClient    = new msgSentFromClient () ;
+            }
+/******************************************************************************************************************************
             // Here is my modification: the server can also talk to the client
             Scanner chat  = new Scanner(System.in) ;
             //HAVE TO HAVE THIS FOR THE in AND out VARIABLES
@@ -28,7 +33,7 @@ public class Client implements Runnable{
             while (true) { 
                 //WHILE THE PROGRAM IS RUNNING
                 String serverTalk = chat.nextLine();
-                System.out.println("Server Said: " + serverTalk);//PRINT IT OUT TO THE SCREEN
+                //System.out.println("Server Said: " + serverTalk);//PRINT IT OUT TO THE SCREEN
                 if (in.hasNext()) {
                     String input = in.nextLine();//IF THERE IS INPUT THEN MAKE A NEW VARIABLE input AND READ WHAT THEY TYPED
                     System.out.println("Client Said: " + input);//PRINT IT OUT TO THE SCREEN
@@ -36,6 +41,7 @@ public class Client implements Runnable{
                     out.flush();//FLUSH THE STREAM
                 }
             }
+******************************************************************************************************************************/
         }
 
         catch (Exception e) {
@@ -44,3 +50,25 @@ public class Client implements Runnable{
     }
 }
 
+public class readFromCmd extends Thread {
+
+    public void run () {
+    
+        Scanner chat        = new Scanner ( System.in ) ;
+        PrintWriter out     = new PrintWriter(socket.getOutputStream());
+        String serverTalk   = chat.nextLine () ;
+        out.println("Server send: " + serverTalk);//RESEND IT TO THE CLIENT
+        out.flush();//FLUSH THE STREAM
+        
+    }
+}
+
+public class msgSentFromClient extends Thread {
+    
+    public void run () {
+        Scanner in = new Scanner(socket.getInputStream());
+        String input = in.nextLine();//IF THERE IS INPUT THEN MAKE A NEW VARIABLE input AND READ WHAT THEY TYPED
+        System.out.println("Client Said: " + input);//PRINT IT OUT TO THE SCREEN
+    }
+
+}

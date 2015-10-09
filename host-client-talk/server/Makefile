@@ -1,4 +1,4 @@
-src_java		:= Main.java Client.java
+src_java		:= Main.java Client.java msgSentFromClient.java readFromCmd.java
 target_class	:= $(src_java:%.java=%.class)
 
 all:run

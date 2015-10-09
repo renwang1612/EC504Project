@@ -18,8 +18,12 @@ public class Client implements Runnable{
     
         try { 
             while (true) {
-                readFromCmd cmdline             = new readFromCmd () ;
-                msgSentFromClient readClient    = new msgSentFromClient () ;
+                readFromCmd cmdline             = new readFromCmd (socket) ;
+                msgSentFromClient readClient    = new msgSentFromClient (socket) ;
+                Thread writeThread              = new Thread ( cmdline ) ;
+                Thread readThread               = new Thread ( readClient ) ;
+                readThread.start() ;
+                writeThread.start() ;
             }
 /******************************************************************************************************************************
             // Here is my modification: the server can also talk to the client
@@ -50,25 +54,4 @@ public class Client implements Runnable{
     }
 }
 
-public class readFromCmd extends Thread {
 
-    public void run () {
-    
-        Scanner chat        = new Scanner ( System.in ) ;
-        PrintWriter out     = new PrintWriter(socket.getOutputStream());
-        String serverTalk   = chat.nextLine () ;
-        out.println("Server send: " + serverTalk);//RESEND IT TO THE CLIENT
-        out.flush();//FLUSH THE STREAM
-        
-    }
-}
-
-public class msgSentFromClient extends Thread {
-    
-    public void run () {
-        Scanner in = new Scanner(socket.getInputStream());
-        String input = in.nextLine();//IF THERE IS INPUT THEN MAKE A NEW VARIABLE input AND READ WHAT THEY TYPED
-        System.out.println("Client Said: " + input);//PRINT IT OUT TO THE SCREEN
-    }
-
-}

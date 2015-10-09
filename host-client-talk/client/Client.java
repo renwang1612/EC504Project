@@ -14,8 +14,11 @@ public class Client implements Runnable {
     @Override
     public void run()//INHERIT THE RUN METHOD FROM THE Runnable INTERFACE
     {
-        try
-        {
+        try {
+            while (true) {
+                readFromCmd cmdline             = new readFromCmd ( socket ) ;
+                msgSentFromClient readClient    = new msgSentFromClient ( socket ) ;
+            }
 /******************************************************************************************************************************
             Scanner chat = new Scanner(System.in);
             //GET THE INPUT FROM THE CMD
@@ -42,7 +45,8 @@ public class Client implements Runnable {
         }
         catch (Exception e)
         {
-            e.printStackTrace();//MOST LIKELY WONT BE AN ERROR, GOOD PRACTICE TO CATCH THOUGH
+            e.printStackTrace(); 
+            //MOST LIKELY WONT BE AN ERROR, GOOD PRACTICE TO CATCH THOUGH
         }
     }
  

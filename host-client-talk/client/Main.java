@@ -13,13 +13,14 @@ public class Main {
         {
              
             Socket s = new Socket(HOST, PORT);//CONNECT TO THE SERVER
-             
             System.out.println("You connected to " + HOST);//IF CONNECTED THEN PRINT IT OUT
-             
-            Client client = new Client(s);//START NEW CLIENT OBJECT
-             
-            Thread t = new Thread(client);//INITIATE NEW THREAD
-            t.start();//START THREAD
+            while ( true ) {
+                readFromCmd cmdline             = new readFromCmd ( s ) ;
+                msgSentFromClient readClient    = new msgSentFromClient ( s ) ;
+            }
+            // Client client = new Client(s);//START NEW CLIENT OBJECT
+            // Thread t = new Thread(client);//INITIATE NEW THREAD
+            // t.start();//START THREAD
              
         }
         catch (Exception noServer)//IF DIDNT CONNECT PRINT THAT THEY DIDNT

@@ -18,12 +18,8 @@ public class Client implements Runnable{
     
         try { 
             while (true) {
-                readFromCmd cmdline             = new readFromCmd (socket) ;
-                msgSentFromClient readClient    = new msgSentFromClient (socket) ;
-                Thread writeThread              = new Thread ( cmdline ) ;
-                Thread readThread               = new Thread ( readClient ) ;
-                readThread.start() ;
-                writeThread.start() ;
+                readFromCmd cmdline             = new readFromCmd ( socket ) ;
+                msgSentFromClient readClient    = new msgSentFromClient ( socket ) ;
             }
 /******************************************************************************************************************************
             // Here is my modification: the server can also talk to the client

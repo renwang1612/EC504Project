@@ -12,14 +12,15 @@ class readFromCmd implements Runnable {
 
     public void run () {
         try { 
-            while ( true ) {
+            //while ( true ) {
                 Scanner chat        = new Scanner ( System.in ) ;
                 PrintWriter out     = new PrintWriter(socket.getOutputStream());
-                String serverTalk   = chat.nextLine () ;
+                //String serverTalk   = chat.nextLine () ;
+                String serverTalk     = "This is Client." ;
                 // out.println("Server send: " + serverTalk);//RESEND IT TO THE CLIENT
                 out.println(serverTalk);//RESEND IT TO THE CLIENT
                 out.flush();//FLUSH THE STREAM
-            }
+            //}
         } catch ( Exception e ) {
             e.printStackTrace () ;
         }

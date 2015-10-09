@@ -16,7 +16,8 @@ class readFromCmd implements Runnable {
                 Scanner chat        = new Scanner ( System.in ) ;
                 PrintWriter out     = new PrintWriter(socket.getOutputStream());
                 String serverTalk   = chat.nextLine () ;
-                out.println("Server send: " + serverTalk);//RESEND IT TO THE CLIENT
+                // out.println("Server send: " + serverTalk);//RESEND IT TO THE CLIENT
+                out.println(serverTalk);//RESEND IT TO THE CLIENT
                 out.flush();//FLUSH THE STREAM
             }
         } catch ( Exception e ) {

@@ -45,7 +45,8 @@ public class Client implements Runnable{
         }
 
         catch (Exception e) {
-            e.printStackTrace();//MOST LIKELY THERE WONT BE AN ERROR BUT ITS GOOD TO CATCH
+            e.printStackTrace();
+            //MOST LIKELY THERE WONT BE AN ERROR BUT ITS GOOD TO CATCH
         }  
     }
 }

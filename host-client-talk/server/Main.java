@@ -19,10 +19,12 @@ public class Main {
             Socket s        = server.accept();
             System.out.println("Client connected from " + s.getLocalAddress().getHostName());   
 
-            while ( true ) {
-                readFromCmd cmdline             = new readFromCmd ( s ) ;
-                msgSentFromClient readClient    = new msgSentFromClient ( s ) ;
-            }
+            readFromCmd cmdline             = new readFromCmd ( s ) ;
+            msgSentFromClient readClient    = new msgSentFromClient ( s ) ;
+            Thread thread1                  = new Thread ( cmdline ) ;
+            Thread thread2                  = new Thread ( readClient ) ;
+            thread1.start () ;
+            thread2.start () ;
          
             // while (true) {//WHILE THE PROGRAM IS RUNNING 
 

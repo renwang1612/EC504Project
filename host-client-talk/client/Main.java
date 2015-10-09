@@ -14,10 +14,14 @@ public class Main {
              
             Socket s = new Socket(HOST, PORT);//CONNECT TO THE SERVER
             System.out.println("You connected to " + HOST);//IF CONNECTED THEN PRINT IT OUT
-            while ( true ) {
+
                 readFromCmd cmdline             = new readFromCmd ( s ) ;
                 msgSentFromClient readClient    = new msgSentFromClient ( s ) ;
-            }
+                Thread thread1                  = new Thread ( cmdline ) ;
+                Thread thread2                  = new Thread ( readClient ) ;
+                thread1.start () ;
+                thread2.start () ;
+
             // Client client = new Client(s);//START NEW CLIENT OBJECT
             // Thread t = new Thread(client);//INITIATE NEW THREAD
             // t.start();//START THREAD

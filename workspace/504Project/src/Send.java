@@ -2,7 +2,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-class Send {
+class Send implements Runnable {
 
     private Socket socket ;
 

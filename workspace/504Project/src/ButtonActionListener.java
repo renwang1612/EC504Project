@@ -17,11 +17,10 @@ public class ButtonActionListener implements ActionListener{							//Button acti
 		if (buttonName.equals("Send")) {
 			JOptionPane.showMessageDialog(null, "Button clicked!", "Message", JOptionPane.INFORMATION_MESSAGE);
 			//call the communication function written by Bob here
-
-            String serverTalk       = "This is Client." ;
-            PrintWriter out         = new PrintWriter(socket.getOutputStream());
-            out.println(serverTalk);//RESEND IT TO THE CLIENT
-            out.flush();//FLUSH THE STREAM
-		}
+            
+            Send send = new Send (socket) ;
+            Thread thread = new Thread ( send ) ;
+            thread.start () ;
+        }
 	}
 }

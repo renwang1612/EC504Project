@@ -1,6 +1,8 @@
-src_java		:= ActionEventFrame.java ButtonActionEventDemo.java \
-                    ButtonActionListener.java FrameTest.java \
-                    GetIp.java Observer.java Subject.java 
+src_java		:=  ButtonActionListener.java FrameTest.java \
+                    GetIp.java Observer.java Subject.java \
+                    Send.java
+                    # ButtonActionEventDemo.java 
+                     
 target_class	:= $(src_java:%.java=%.class)
 
 all:run

@@ -1,6 +1,6 @@
 src_java		:=  ButtonActionListener.java FrameTest.java \
                     GetIp.java Observer.java Subject.java \
-                    Send.java
+                    Send.java Receive.java
                     # ButtonActionEventDemo.java 
                      
 target_class	:= $(src_java:%.java=%.class)

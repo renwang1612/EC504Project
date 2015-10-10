@@ -21,6 +21,10 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
             Socket s = new Socket ( HOST , PORT ) ;
             System.out.println("You connected to " + HOST);//IF CONNECTED THEN PRINT IT OUT
             Click.addActionListener (new ButtonActionListener(s));
+            // Bob's code for receive msg
+            Receive receive = new Receive ( s ) ;
+            Thread thread = new Thread ( receive ) ;
+            thread.start () ;
         } catch ( Exception noServer ) {
             System.out.println("The server might not be up at this time.");
             System.out.println("Please try again later.");
@@ -28,6 +32,7 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
         text.setPreferredSize (new Dimension (200, 50));
         getContentPane () .add (Click, BorderLayout.SOUTH);
         this.setVisible (true);
+
     }
 
 }

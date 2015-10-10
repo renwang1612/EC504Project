@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         try {
-            final int PORT = 6677;
+            final int PORT = 4563;
             //SET NEW CONSTANT VARIABLE: PORT
             ServerSocket server = new ServerSocket(PORT); 
             //SET PORT NUMBER

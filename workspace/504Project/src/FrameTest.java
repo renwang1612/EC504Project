@@ -4,11 +4,11 @@ import javax.swing.*;
 import java.io.IOException;
 import java.net.Socket;
 
-class ActionEventFrame extends Observer {										//build window, 1 button and 1 text field
-	JButton Click = new JButton();												//extend observer, because try to show message received from
+class ActionEventFrame extends Observer {										//build window, 1 button and 1 Text field
+	//JButton Click = new JButton();												//extend observer, because try to show message received from
 	JTextField text = new JTextField ();										//another data center, so use a observer pattern
 
-    private final static int PORT = 6677;//SET A CONSTANT VARIABLE PORT
+    private final static int PORT = 4563;//SET A CONSTANT VARIABLE PORT
     private final static String HOST = "localhost";//SET A CONSTANT VARIABLE HOST
     
     ActionEventFrame () {
@@ -20,7 +20,7 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
         try {
             Socket s = new Socket ( HOST , PORT ) ;
             System.out.println("You connected to " + HOST);//IF CONNECTED THEN PRINT IT OUT
-            Click.addActionListener (new ButtonActionListener(s));
+            Click.addActionListener (new ButtonActionListener(s, this));
             // Bob's code for receive msg
             Receive receive = new Receive ( s ) ;
             receive.attach (this);
@@ -31,11 +31,14 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
             System.out.println("Please try again later.");
         }
         text.setPreferredSize (new Dimension (200, 50));
-        getContentPane () .add (Click, BorderLayout.SOUTH);
+        //text.setText("abcdefg");
+        //JPanel pane1 = new JPanel ();
+        this. getContentPane() .add (Click, BorderLayout.SOUTH);
+        this. getContentPane() .add (Text, BorderLayout.CENTER);
+        this. getContentPane() .add (label, BorderLayout.NORTH);
         this.setVisible (true);
 
     }
-
 }
 
 public class FrameTest {											//main function

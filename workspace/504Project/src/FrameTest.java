@@ -23,6 +23,7 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
             Click.addActionListener (new ButtonActionListener(s));
             // Bob's code for receive msg
             Receive receive = new Receive ( s ) ;
+            receive.attach (this);
             Thread thread = new Thread ( receive ) ;
             thread.start () ;
         } catch ( Exception noServer ) {

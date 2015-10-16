@@ -8,8 +8,8 @@ class ForwardSocket implements Runnable {
     private Socket outputSocket;
 
     public ForwardSocket ( Socket inputSocket, Socket outputSocket ) {
-        inputSocket         = this.inputSocket ;
-        outputSocket        = this.outputSocket ;
+        this.inputSocket         = inputSocket ;
+        this.outputSocket        = outputSocket ;
     }
     
     public void run () {

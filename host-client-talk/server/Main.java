@@ -46,7 +46,7 @@ public class Main {
             //     //START THE THREAD
             // }
             
-            Socket ServerClient             = new Socket ( HOST , PORT ) ;
+            Socket ServerClient             = new Socket ( HOST , ServerClientPORT ) ;
             System.out.println("Server connected");   
 
             msgSentFromClient receive       = new msgSentFromClient ( ServerClient ) ;

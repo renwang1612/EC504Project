@@ -7,14 +7,10 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        
+
         try {
 
-            final String HOST        = "localhost" ;
-            // This port is facing the other clients
-            final int PORT                  = 4563;
-            // This port is facing the other server
-            final int ServerClientPORT      = 4564;
+            final int PORT = 4562;
             //SET NEW CONSTANT VARIABLE: PORT
             ServerSocket server = new ServerSocket(PORT); 
             //SET PORT NUMBER
@@ -24,14 +20,25 @@ public class Main {
             Socket s        = server.accept();
             System.out.println("Client connected from " + s.getLocalAddress().getHostName());   
 
+            // This port is facing the other server
+            final int SERVERPORT = 4564 ;
+            ServerSocket ServerServer       = new ServerSocket ( SERVERPORT ) ;
+            Socket serverS                  = ServerServer.accept () ;
+            System.out.println("Another Server is connected from " + serverS.getLocalAddress().getHostName() ) ;
+
             readFromCmd cmdline             = new readFromCmd ( s ) ;
             msgSentFromClient readClient    = new msgSentFromClient ( s ) ;
+            ForwardSocket forwardsocket     = new ForwardSocket ( s , serverS ) ;
             Thread thread1                  = new Thread ( cmdline ) ;
             Thread thread2                  = new Thread ( readClient ) ;
+            Thread thread3                  = new Thread ( forwardsocket ) ;
             thread1.start () ;
             thread2.start () ;
+            thread3.start () ;
+        
          
-            // while (true) {//WHILE THE PROGRAM IS RUNNING 
+            // while (true) {
+            //WHILE THE PROGRAM IS RUNNING 
 
             //     Socket s        = server.accept();
             //     //ACCEPT SOCKETS(CLIENTS) TRYING TO CONNECT
@@ -44,15 +51,8 @@ public class Main {
             //     //MAKE A NEW THREAD
             //     t.start();
             //     //START THE THREAD
+
             // }
-            
-            Socket ServerClient             = new Socket ( HOST , PORT ) ;
-            System.out.println("Server connected");   
-
-            msgSentFromClient receive       = new msgSentFromClient ( ServerClient ) ;
-            Thread thread3                  = new Thread ( receive ) ;
-            thread3.start () ;
-
         }
 
         catch (Exception e) {

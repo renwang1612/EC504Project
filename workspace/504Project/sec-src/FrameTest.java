@@ -9,6 +9,7 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
 	JTextField text = new JTextField ();										//another data center, so use a observer pattern
 
     private final static int PORT = 4563;//SET A CONSTANT VARIABLE PORT
+    //private final static String HOST = "155.41.73.64";//SET A CONSTANT VARIABLE HOST
     private final static String HOST = "localhost";//SET A CONSTANT VARIABLE HOST
     
     ActionEventFrame () {

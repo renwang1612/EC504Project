@@ -1,4 +1,4 @@
-src_java		:= Main.java Client.java msgSentFromClient.java readFromCmd.java
+src_java		:= Main.java Send.java Receive.java ForwardSocket.java
 target_class	:= $(src_java:%.java=%.class)
 
 all:run

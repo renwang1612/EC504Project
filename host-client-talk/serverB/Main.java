@@ -26,33 +26,16 @@ public class Main {
             Socket serverS                  = ServerServer.accept () ;
             System.out.println("Another Server is connected from " + serverS.getLocalAddress().getHostName() ) ;
 
-            readFromCmd cmdline             = new readFromCmd ( s ) ;
-            msgSentFromClient readClient    = new msgSentFromClient ( s ) ;
+            Send send             			= new Send ( s ) ;
+            Receive receive    				= new Receive ( s ) ;
             ForwardSocket forwardsocket     = new ForwardSocket ( s , serverS ) ;
-            Thread thread1                  = new Thread ( cmdline ) ;
-            Thread thread2                  = new Thread ( readClient ) ;
+            Thread thread1                  = new Thread ( send ) ;
+            Thread thread2                  = new Thread ( receive ) ;
             Thread thread3                  = new Thread ( forwardsocket ) ;
             thread1.start () ;
             thread2.start () ;
             thread3.start () ;
         
-         
-            // while (true) {
-            //WHILE THE PROGRAM IS RUNNING 
-
-            //     Socket s        = server.accept();
-            //     //ACCEPT SOCKETS(CLIENTS) TRYING TO CONNECT
-            //     System.out.println("Client connected from " + s.getLocalAddress().getHostName());   
-            //     //  TELL THEM THAT THE CLIENT CONNECTED
-
-            //     Client chat     = new Client(s);
-            //     //CREATE A NEW CLIENT OBJECT
-            //     Thread t        = new Thread(chat);
-            //     //MAKE A NEW THREAD
-            //     t.start();
-            //     //START THE THREAD
-
-            // }
         }
 
         catch (Exception e) {

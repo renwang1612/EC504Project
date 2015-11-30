@@ -15,12 +15,17 @@ class ForwardSocket implements Runnable {
     public void run () {
         try {
             while ( true ) {
+				// get input data
                 Scanner in      = new Scanner(inputSocket.getInputStream());
+				// go to next line next time
                 String input    = in.nextLine();
+				// What the input data is 
                 System.out.println("Client Said: " + input);//PRINT IT OUT TO THE SCREEN
+				// forwarding data
                 System.out.println ( "forward msg:" + input ) ;
-                //IF THERE IS INPUT THEN MAKE A NEW VARIABLE input AND READ WHAT THEY TYPED
+                // If there is input then make a new variable INPUT and read what they typed
                 PrintWriter output = new PrintWriter(outputSocket.getOutputStream());
+				// Forward data directly
                 output.println ( input ) ;
                 output.flush() ;
             }

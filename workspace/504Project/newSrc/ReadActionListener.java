@@ -2,13 +2,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.net.Socket;
-import java.io.PrintWriter;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.HashMap;
-//import java.util.LinkedHashMap;
+// import java.util.LinkedHashMap;
 import java.util.Map;
-import java.io.IOException;
 
 public class ReadActionListener  implements ActionListener{
 	private ActionEventFrame actioneventframe;
@@ -25,6 +22,9 @@ public class ReadActionListener  implements ActionListener{
 		//fullfill the data structure
         String line = "";
         try {
+            File testFile = new File ( "dataSent.txt" ) ;
+            BufferedWriter writer = new BufferedWriter ( new FileWriter ( testFile , true ));
+            
             while ((line = in.readLine()) != null) {
                 String parts[] = line.split("\t");// assume tab separated
                 System.out.println("11111");
@@ -32,6 +32,13 @@ public class ReadActionListener  implements ActionListener{
                 //map.put(line, line); // (parts[0], int)
                 System.out.println(parts[0]+" "+parts[1]);
             }
+            
+            for ( String buffer: map.keySet() ) {
+                writer.write ( buffer + "\n" ) ;
+            }
+            
+            writer.flush () ;
+            writer.close() ;
             in.close();
         } catch ( IOException ex ) {
             System.out.println ("file close failed") ;

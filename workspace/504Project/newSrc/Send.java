@@ -1,5 +1,4 @@
 import java.io.*;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 import java.util.HashMap;
@@ -24,8 +23,8 @@ class Send implements Runnable {
             //Scanner chat        = new Scanner ( System.in ) ;
             PrintWriter out     = new PrintWriter(socket.getOutputStream());
             //String serverTalk   = chat.nextLine () ;
-            String fileName = "temp.txt";
-
+            File file = new File ( "temp.txt" ) ;
+            File file2 = new File ( "tempcheck.txt" ) ;
             // This will reference one line at a time
             String line = null;
             String buffer = null;
@@ -46,11 +45,22 @@ class Send implements Runnable {
                 } */
                 //System.out.println(buffer);
             for ( String iterateBuffer: map.keySet() ) {
-                buffer = iterateBuffer ;
-                out.println(buffer);//RESEND IT TO THE CLIENT
-                out.flush();//FLUSH THE STREAM
+                buffer += iterateBuffer + "/t" ;
+                System.out.println(iterateBuffer);
+                BufferedWriter writer2 = new BufferedWriter ( new FileWriter ( file2, true ));
+                writer2.write (iterateBuffer) ;
+                writer2.newLine ( ) ;
+                writer2.flush () ;
+                writer2.close() ;
+                
             }
-
+            BufferedWriter writer1 = new BufferedWriter ( new FileWriter ( file, true ));
+            writer1.write (buffer) ;
+            writer1.newLine ( ) ;
+            writer1.flush () ;
+            writer1.close() ;
+            out.println(buffer);//RESEND IT TO THE CLIENT
+            out.flush();//FLUSH THE STREAM
                 // Always close files.
                 //bufferedReader.close();         
             //}

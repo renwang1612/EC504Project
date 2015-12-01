@@ -12,7 +12,7 @@ public class ButtonActionListener implements ActionListener{							//Button acti
     private String content;
     Observer observer;
     Map<String,String> map ;
-    private final static int PORT = 4563;//SET A CONSTANT VARIABLE PORT
+    private final static int PORT = 4562;//SET A CONSTANT VARIABLE PORT
 
     public ButtonActionListener ( Observer observer, Map<String,String> map ) {
         this.observer   = observer;

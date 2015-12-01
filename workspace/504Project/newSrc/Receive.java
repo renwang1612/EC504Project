@@ -18,13 +18,13 @@ public class Receive extends Subject implements Runnable {
     public void run () {
         try {
             File file = new File ( "Result.txt" ) ;
-            String buffer = null;
             PrintWriter out     = new PrintWriter(socket.getOutputStream());
             BufferedWriter writer = new BufferedWriter ( new FileWriter ( file ));
             writer.write ("" ) ;
             writer.flush () ;
             writer.close() ;
             while ( true ) {
+                String buffer = null;
                 Scanner in      = new Scanner(socket.getInputStream());
                 BufferedWriter writer1 = new BufferedWriter ( new FileWriter ( file, true ));
                 String input    = in.nextLine();
@@ -40,16 +40,17 @@ public class Receive extends Subject implements Runnable {
                     } else {
                         map.put ( substring, true ) ;
                     }
+                }
+                for ( String iterateBuffer: map.keySet() ) {
                     writer1.write ( substring ) ;
                     writer1.newLine () ;
-                }
-                writer1.flush () ;
-                writer1.close() ;
-                for ( String iterateBuffer: map.keySet() ) {
                 	if (map.get(iterateBuffer) == false) {
+                		System.out.println(iterateBuffer);
                 		buffer += iterateBuffer + "/t" ;
                 	}
                 }
+                writer1.flush () ;
+                writer1.close() ;
                 if (buffer != null) {
                 	out.println(buffer);
                 	out.flush();

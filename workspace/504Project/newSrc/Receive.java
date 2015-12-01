@@ -18,6 +18,8 @@ public class Receive extends Subject implements Runnable {
     public void run () {
         try {
             File file = new File ( "Result.txt" ) ;
+            String buffer = null;
+            PrintWriter out     = new PrintWriter(socket.getOutputStream());
             BufferedWriter writer = new BufferedWriter ( new FileWriter ( file ));
             writer.write ("" ) ;
             writer.flush () ;
@@ -43,6 +45,15 @@ public class Receive extends Subject implements Runnable {
                 }
                 writer1.flush () ;
                 writer1.close() ;
+                for ( String iterateBuffer: map.keySet() ) {
+                	if (map.get(iterateBuffer) == false) {
+                		buffer += iterateBuffer + "/t" ;
+                	}
+                }
+                if (buffer != null) {
+                	out.println(buffer);
+                	out.flush();
+                }
             }
         } catch ( Exception e ) {
             e.printStackTrace () ;

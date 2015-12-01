@@ -32,7 +32,7 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
         setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         Click.setText ("Send");
         try {
-                int PORT = 4563 ;
+                int PORT = 4562 ;
                 ServerSocket server = new ServerSocket ( PORT ) ;
                 text.setPreferredSize (new Dimension (200, 50));
                 //text.setText("abcdefg");

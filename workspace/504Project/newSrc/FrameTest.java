@@ -22,7 +22,7 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
     ActionEventFrame () {
         super ();
         try{
-            in = new BufferedReader(new FileReader("DC1-sampleQueries.txt"));
+            in = new BufferedReader(new FileReader("DC2-sampleQueries.txt"));
         }
         catch(IOException ex) {
             System.out.println( "Error reading file");

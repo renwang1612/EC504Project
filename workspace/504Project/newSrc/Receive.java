@@ -30,10 +30,12 @@ public class Receive extends Subject implements Runnable {
                 System.out.println("Server Said: " + input);//PRINT IT OUT TO THE SCREEN
                 this.notify ( "Server Said: " + input ) ;
                 // update the map
-                String parts[] = input.split("\\t");
+                String parts[] = input.split("/t");
                 for ( String substring: parts ) {
                     if ( map.containsKey ( substring ) ) {
                         map.remove ( substring ) ;
+                        map.put ( substring, true ) ;
+                    } else {
                         map.put ( substring, true ) ;
                     }
                     writer1.write ( substring ) ;

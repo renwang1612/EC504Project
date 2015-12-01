@@ -24,6 +24,7 @@ public class Receive extends Subject implements Runnable {
             writer.close() ;
             while ( true ) {
                 Scanner in      = new Scanner(socket.getInputStream());
+                BufferedWriter writer1 = new BufferedWriter ( new FileWriter ( file, true ));
                 String input    = in.nextLine();
                 //IF THERE IS INPUT THEN MAKE A NEW VARIABLE input AND READ WHAT THEY TYPED
                 System.out.println("Server Said: " + input);//PRINT IT OUT TO THE SCREEN
@@ -35,10 +36,9 @@ public class Receive extends Subject implements Runnable {
                         map.remove ( substring ) ;
                         map.put ( substring, true ) ;
                     }
+                    writer1.write ( substring ) ;
+                    writer1.newLine () ;
                 }
-                BufferedWriter writer1 = new BufferedWriter ( new FileWriter ( file, true ));
-                writer1.write (input ) ;
-                writer1.newLine ( ) ;
                 writer1.flush () ;
                 writer1.close() ;
             }

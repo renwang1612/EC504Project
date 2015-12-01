@@ -48,7 +48,7 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
                 System.out.println ( "Waiting for client. " ) ;
                 Socket s = server.accept () ;
                 System.out.println ( "Client connected from " + s.getLocalAddress().getHostName() ) ;
-                Receive receive = new Receive (s) ;
+                Receive receive = new Receive (s, map) ;
                 receive.attach (this) ;
                 Thread thread = new Thread ( receive ) ;
                 thread.start() ;

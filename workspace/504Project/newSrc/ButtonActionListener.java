@@ -11,10 +11,10 @@ public class ButtonActionListener implements ActionListener{							//Button acti
     private Socket socket ;
     private String content;
     Observer observer;
-    Map<String,String> map ;
+    Map<String,Boolean> map ;
     private final static int PORT = 4562;//SET A CONSTANT VARIABLE PORT
 
-    public ButtonActionListener ( Observer observer, Map<String,String> map ) {
+    public ButtonActionListener ( Observer observer, Map<String,Boolean> map ) {
         this.observer   = observer;
         this.map        = map ;
     }

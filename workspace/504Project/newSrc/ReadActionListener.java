@@ -10,9 +10,9 @@ import java.util.Map;
 public class ReadActionListener  implements ActionListener{
 	private ActionEventFrame actioneventframe;
     private BufferedReader in ;
-    private Map<String,String> map ;
+    private Map<String,Boolean> map ;
 	public ReadActionListener (ActionEventFrame actioneventframe, BufferedReader in,
-                                    Map<String,String> map) {
+                                    Map<String,Boolean> map) {
 		this.actioneventframe   = actioneventframe;
         this.in                 = in ;
         this.map                = map ;
@@ -34,7 +34,8 @@ public class ReadActionListener  implements ActionListener{
             
             while ((line = in.readLine()) != null) {
                 String parts[] = line.split("\t");// assume tab separated
-                map.put(parts[0], parts[1]); // (parts[0], int)
+                //map.put(parts[0], parts[1]); // (parts[0], int)
+                map.put(parts[0],false) ;
                 //map.put(line, line); // (parts[0], int)
                 //System.out.println(parts[0]+" "+parts[1]);
             }

@@ -9,9 +9,9 @@ class Send implements Runnable {
 
     private Socket socket ;
     private String content ;
-    Map<String,String> map ;
+    Map<String,Boolean> map ;
 
-    public Send ( Socket s , String content, Map<String,String> map ) {
+    public Send ( Socket s , String content, Map<String,Boolean> map ) {
         socket              = s ;
         this.content 		= content ;
         this.map            = map ;

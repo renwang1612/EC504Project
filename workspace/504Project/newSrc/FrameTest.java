@@ -16,7 +16,7 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
 	JTextField text = new JTextField ();										//another data center, so use a observer pattern
 	JButton Clickread = new JButton();
     // construct a data structure that holds all values
-    Map<String, String> map = new HashMap<String, String>();//<String, int> better
+    Map<String, Boolean> map = new HashMap<String, Boolean>();//<String, int> better
     BufferedReader in ;
 
     ActionEventFrame () {

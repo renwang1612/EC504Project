@@ -22,7 +22,7 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
     ActionEventFrame () {
         super ();
         try{
-            in = new BufferedReader(new FileReader("Result.txt"));
+            in = new BufferedReader(new FileReader("DC1-sampleQueries.txt"));
         }
         catch(IOException ex) {
             System.out.println( "Error reading file");
@@ -40,7 +40,8 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
                 Click.addActionListener (new ButtonActionListener(this,map));
                 Clickread.setText("Read");
                 Clickread.addActionListener (new ReadActionListener(this,in,map));
-                this. getContentPane() .add (Click, BorderLayout.SOUTH);
+                this. getContentPane() .add (Click, BorderLayout.EAST);
+                this. getContentPane() .add (Clickread, BorderLayout.WEST);
                 this. getContentPane() .add (Text, BorderLayout.CENTER);
                 this. getContentPane() .add (label, BorderLayout.NORTH);
                 this.setVisible (true);

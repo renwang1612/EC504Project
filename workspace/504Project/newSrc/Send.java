@@ -31,7 +31,7 @@ class Send implements Runnable {
             String buffer = null;
 
             String serverTalk     = this.content ;
-            try {
+            //try {
             	// traverse the data structure and out the comment of each node to another UI
                 // FileReader reads text files in the default encoding.
                 // FileReader fileReader = new FileReader(fileName);
@@ -45,23 +45,23 @@ class Send implements Runnable {
                     System.out.println(buffer);
                 } */
                 //System.out.println(buffer);
-                for ( String iterateBuffer: map.keySet() ) {
-                    buffer = iterateBuffer ;
-                }
+            for ( String iterateBuffer: map.keySet() ) {
+                buffer = iterateBuffer ;
                 out.println(buffer);//RESEND IT TO THE CLIENT
                 out.flush();//FLUSH THE STREAM
+            }
 
                 // Always close files.
                 //bufferedReader.close();         
-            }
-            catch(FileNotFoundException ex) {
-                System.out.println( "Unable to open file '" + fileName + "'");                
-            }
-            catch(IOException ex) {
-                System.out.println( "Error reading file '" + fileName + "'");                  
-                // Or we could just do this: 
-                // ex.printStackTrace();
-            }
+            //}
+            //catch(FileNotFoundException ex) {
+            //    System.out.println( "Unable to open file '" + fileName + "'");                
+            //}
+            //catch(IOException ex) {
+            //    System.out.println( "Error reading file '" + fileName + "'");                  
+            //    // Or we could just do this: 
+            //    // ex.printStackTrace();
+            //}
     
             // out.println("Server send: " + serverTalk);//RESEND IT TO THE CLIENT
             //}

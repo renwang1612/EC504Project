@@ -17,10 +17,16 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
 	JButton Clickread = new JButton();
     // construct a data structure that holds all values
     Map<String, String> map = new HashMap<String, String>();//<String, int> better
-    BufferedReader in = new BufferedReader(new FileReader("Result.txt"));
+    BufferedReader in ;
 
     ActionEventFrame () {
         super ();
+        try{
+            in = new BufferedReader(new FileReader("Result.txt"));
+        }
+        catch(IOException ex) {
+            System.out.println( "Error reading file");
+        }
         setTitle ("540Project");
         setBounds (100, 100, 300, 200);
         setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
@@ -33,7 +39,7 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
                 //JPanel pane1 = new JPanel ();
                 Click.addActionListener (new ButtonActionListener(this,map));
                 Clickread.setText("Read");
-                Clickread.addActionListener (new ReadActionListener());
+                Clickread.addActionListener (new ReadActionListener(this,in,map));
                 this. getContentPane() .add (Click, BorderLayout.SOUTH);
                 this. getContentPane() .add (Text, BorderLayout.CENTER);
                 this. getContentPane() .add (label, BorderLayout.NORTH);

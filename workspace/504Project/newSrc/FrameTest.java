@@ -4,11 +4,20 @@ import javax.swing.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+// Read from file
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.HashMap;
+//import java.util.LinkedHashMap;
+import java.util.Map;
 
 class ActionEventFrame extends Observer {										//build window, 1 button and 1 Text field
 	//JButton Click = new JButton();												//extend observer, because try to show message received from
 	JTextField text = new JTextField ();										//another data center, so use a observer pattern
 	JButton Clickread = new JButton();
+    // construct a data structure that holds all values
+    Map<String, String> map = new HashMap<String, String>();//<String, int> better
+    BufferedReader in = new BufferedReader(new FileReader("Result.txt"));
 
     ActionEventFrame () {
         super ();
@@ -22,7 +31,7 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
                 text.setPreferredSize (new Dimension (200, 50));
                 //text.setText("abcdefg");
                 //JPanel pane1 = new JPanel ();
-                Click.addActionListener (new ButtonActionListener(this));
+                Click.addActionListener (new ButtonActionListener(this,map));
                 Clickread.setText("Read");
                 Clickread.addActionListener (new ReadActionListener());
                 this. getContentPane() .add (Click, BorderLayout.SOUTH);

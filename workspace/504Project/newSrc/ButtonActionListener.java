@@ -3,15 +3,20 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.net.Socket;
 import java.io.PrintWriter;
+import java.util.HashMap;
+//import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class ButtonActionListener implements ActionListener{							//Button action, build a new 
     private Socket socket ;
     private String content;
     Observer observer;
+    Map<String,String> map ;
     private final static int PORT = 4563;//SET A CONSTANT VARIABLE PORT
 
-    public ButtonActionListener ( Observer observer) {
-        this.observer = observer;
+    public ButtonActionListener ( Observer observer, Map<String,String> map ) {
+        this.observer   = observer;
+        this.map        = map ;
     }
 
 	public void actionPerformed (ActionEvent e) {
@@ -31,7 +36,7 @@ public class ButtonActionListener implements ActionListener{							//Button acti
             System.out.println("Please try again later.");
         }
 
-            Send send = new Send (socket, "test") ;
+            Send send = new Send (socket, "test", map) ;
             Thread thread = new Thread ( send ) ;
             thread.start () ;
         }

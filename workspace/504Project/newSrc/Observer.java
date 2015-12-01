@@ -13,7 +13,6 @@ public abstract class Observer extends JFrame {										//Observer pattern, an 
     String getTextAndClean () {
     	String content = Text.getText();
     	Text.setText("");
-    	label.setText ("");
     	return content;
     }
 }

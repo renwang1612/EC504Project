@@ -8,10 +8,8 @@ import java.net.Socket;
 class ActionEventFrame extends Observer {										//build window, 1 button and 1 Text field
 	//JButton Click = new JButton();												//extend observer, because try to show message received from
 	JTextField text = new JTextField ();										//another data center, so use a observer pattern
+	JButton Clickread = new JButton();
 
-    private final static int PORT = 4563;//SET A CONSTANT VARIABLE PORT
-    private final static String HOST = "155.41.10.161";//SET A CONSTANT VARIABLE HOST
-    
     ActionEventFrame () {
         super ();
         setTitle ("540Project");
@@ -19,31 +17,34 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
         setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         Click.setText ("Send");
         try {
-        	ServerSocket server = new ServerSocket(PORT); 
-            text.setPreferredSize (new Dimension (200, 50));
-            //text.setText("abcdefg");
-            //JPanel pane1 = new JPanel ();
-            this. getContentPane() .add (Click, BorderLayout.SOUTH);
-            this. getContentPane() .add (Text, BorderLayout.CENTER);
-            this. getContentPane() .add (label, BorderLayout.NORTH);
-            this.setVisible (true);
-	        //SET PORT NUMBER
-	        System.out.println("Waiting for clients...");
-	        //AT THE START PRINT THIS
-	        Socket s        = server.accept();
-	        System.out.println("Client connected from " + s.getLocalAddress().getHostName());  
-            //Socket s = new Socket ( HOST , PORT ) ;
-            //System.out.println("You connected to " + HOST);//IF CONNECTED THEN PRINT IT OUT
-            //Click.addActionListener (new ButtonActionListener(s, this));
-            // Bob's code for receive msg
-            Receive receive = new Receive ( s ) ;
-            receive.attach (this);
-            Thread thread = new Thread ( receive ) ;
-            thread.start () ;
-        } catch ( Exception noServer ) {
-            System.out.println("The server might not be up at this time.");
-            System.out.println("Please try again later.");
+                int PORT = 4562 ;
+                ServerSocket server = new ServerSocket ( PORT ) ;
+                text.setPreferredSize (new Dimension (200, 50));
+                //text.setText("abcdefg");
+                //JPanel pane1 = new JPanel ();
+                Click.addActionListener (new ButtonActionListener(this));
+                Clickread.setText("Read");
+                Clickread.addActionListener (new ReadActionListener());
+                this. getContentPane() .add (Click, BorderLayout.SOUTH);
+                this. getContentPane() .add (Text, BorderLayout.CENTER);
+                this. getContentPane() .add (label, BorderLayout.NORTH);
+                this.setVisible (true);
+                System.out.println ( "Waiting for client. " ) ;
+                Socket s = server.accept () ;
+                System.out.println ( "Client connected from " + s.getLocalAddress().getHostName() ) ;
+                Receive receive = new Receive (s) ;
+                receive.attach (this) ;
+                Thread thread = new Thread ( receive ) ;
+                thread.start() ;
+        } catch ( Exception e ) {
+                System.out.println ( "No server. " ) ;
         }
+
+            // Bob's code for receive msg
+        //} catch ( Exception noServer ) {
+        //    System.out.println("The server might not be up at this time.");
+        //    System.out.println("Please try again later.");
+        //}
 
     }
 }

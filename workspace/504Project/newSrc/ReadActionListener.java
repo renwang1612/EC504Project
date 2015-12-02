@@ -39,7 +39,7 @@ public class ReadActionListener  implements ActionListener{
                 //map.put(line, line); // (parts[0], int)
                 //System.out.println(parts[0]+" "+parts[1]);
             }
-            
+            actioneventframe.readamount = map.size();
             for ( String buffer: map.keySet()) {
                 writer1.write ( buffer + "\n" ) ;
             }
@@ -47,6 +47,7 @@ public class ReadActionListener  implements ActionListener{
             writer1.flush () ;
             writer1.close() ;
             in.close();
+            System.out.println("Read succed!");
         } catch ( IOException ex ) {
             System.out.println ("file close failed") ;
         }

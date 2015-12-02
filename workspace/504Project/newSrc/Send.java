@@ -8,12 +8,12 @@ import java.util.Map;
 class Send implements Runnable {
 
     private Socket socket ;
-    private String content ;
     Map<String,Boolean> map ;
+    ActionEventFrame actioneventframe;
 
-    public Send ( Socket s , String content, Map<String,Boolean> map ) {
+    public Send (ActionEventFrame actioneventframe, Socket s, Map<String,Boolean> map ) {
+    	this.actioneventframe = actioneventframe;
         socket              = s ;
-        this.content 		= content ;
         this.map            = map ;
     }
 
@@ -26,10 +26,10 @@ class Send implements Runnable {
             File file = new File ( "temp.txt" ) ;
             File file2 = new File ( "tempcheck.txt" ) ;
             // This will reference one line at a time
-            String line = null;
+            //String line = null;
             String buffer = "";
 
-            String serverTalk     = this.content ;
+            //String serverTalk     = this.content ;
             //try {
             	// traverse the data structure and out the comment of each node to another UI
                 // FileReader reads text files in the default encoding.
@@ -59,6 +59,7 @@ class Send implements Runnable {
             writer1.newLine ( ) ;
             writer1.flush () ;
             writer1.close() ;
+            actioneventframe.sentamount += buffer.length();
             out.println(buffer);//RESEND IT TO THE CLIENT
             out.flush();//FLUSH THE STREAM
             out.close();

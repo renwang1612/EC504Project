@@ -15,7 +15,11 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
 	//JButton Click = new JButton();												//extend observer, because try to show message received from
 	JTextField text = new JTextField ();										//another data center, so use a observer pattern
 	JButton Clickread = new JButton();
+	JButton Status = new JButton();
 	String Address = null;
+	int sentamount = 0;
+	int readamount = 0;
+	int finalamount = 0;
     // construct a data structure that holds all values
     Map<String, Boolean> map = new HashMap<String, Boolean>();//<String, int> better
     BufferedReader in ;
@@ -41,14 +45,20 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
                 Click.addActionListener (new ButtonActionListener(this,map));
                 Clickread.setText("Read");
                 Clickread.addActionListener (new ReadActionListener(this,in,map));
+                Status.setText("Check Status");
+                Status.addActionListener (new StatusActionListener(this));
                 this. getContentPane() .add (Click, BorderLayout.EAST);
                 this. getContentPane() .add (Clickread, BorderLayout.WEST);
+                this. getContentPane() .add (Status, BorderLayout.SOUTH);
                 this. getContentPane() .add (Text, BorderLayout.CENTER);
                 this. getContentPane() .add (label, BorderLayout.NORTH);
                 this.setVisible (true);
                 System.out.println ( "Waiting for client. " ) ;
                 Socket s = server.accept () ;
                 System.out.println ( "Client connected from " + s.getLocalAddress().getHostName() ) ;
+                Address = s.getInetAddress().toString();
+                Address = Address.substring(1, Address.length());
+                System.out.println(Address);
                 Receive receive = new Receive (this, s, map) ;
                 receive.attach (this) ;
                 Thread thread = new Thread ( receive ) ;

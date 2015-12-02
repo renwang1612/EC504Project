@@ -30,6 +30,7 @@ public class Receive extends Subject implements Runnable {
                 Scanner in      = new Scanner(socket.getInputStream());
                 BufferedWriter writer1 = new BufferedWriter ( new FileWriter ( file, true ));
                 String input    = in.nextLine();
+                actioneventframe.sentamount += input.length();
                 //IF THERE IS INPUT THEN MAKE A NEW VARIABLE input AND READ WHAT THEY TYPED
                 System.out.println("Server Said: " + input);//PRINT IT OUT TO THE SCREEN
                 this.notify ( "Server Said: " + input ) ;
@@ -43,8 +44,6 @@ public class Receive extends Subject implements Runnable {
                         map.put ( substring, true ) ;
                     }
                 }
-                Socket socketsend = new Socket ("192.168.1.100", PORT);
-                PrintWriter out     = new PrintWriter(socketsend.getOutputStream());
                 for ( String iterateBuffer: map.keySet() ) {
                      writer1.write ( iterateBuffer ) ;
                     writer1.newLine () ;
@@ -53,9 +52,13 @@ public class Receive extends Subject implements Runnable {
                 		buffer += iterateBuffer + "/t" ;
                 	}
                 }
+                actioneventframe.finalamount = map.size();
                 writer1.flush () ;
                 writer1.close() ;
+                Socket socketsend = new Socket (actioneventframe.Address, PORT);
+                PrintWriter out     = new PrintWriter(socketsend.getOutputStream());
                 if (buffer != null) {
+                    actioneventframe.sentamount += buffer.length();
                     System.out.println(buffer);
                 	out.println(buffer);
                 	System.out.println("println good");

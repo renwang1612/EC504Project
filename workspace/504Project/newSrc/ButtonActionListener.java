@@ -26,7 +26,6 @@ public class ButtonActionListener implements ActionListener{							//Button acti
 			//JOptionPane.showMessageDialog(null, "Button clicked!", "Message", JOptionPane.INFORMATION_MESSAGE);
 			//call the communication function written by Bob here
             content = observer.getTextAndClean();
-            observer.Address =  content;
         try {
             System.out.println("You are connecting to " + content);//IF CONNECTED THEN PRINT IT OUT
             socket = new Socket ( content , PORT ) ;
@@ -36,7 +35,7 @@ public class ButtonActionListener implements ActionListener{							//Button acti
             System.out.println("Please try again later.");
         }
 
-            Send send = new Send (socket, "test", map) ;
+            Send send = new Send (observer, socket, map) ;
             Thread thread = new Thread ( send ) ;
             thread.start () ;
         }

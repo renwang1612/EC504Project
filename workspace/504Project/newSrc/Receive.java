@@ -7,18 +7,20 @@ import java.util.Map;
 
 public class Receive extends Subject implements Runnable {
 
+	ActionEventFrame actioneventframe ;
     private Socket socket;
     private Map<String,Boolean> map ;
 
-    public Receive ( Socket s, Map<String,Boolean> map) {
+    public Receive ( ActionEventFrame actioneventframe, Socket s, Map<String,Boolean> map) {
+    	this.actioneventframe  = actioneventframe;
         socket          = s ;
         this.map        = map ;
     }
     
     public void run () {
         try {
+        	int PORT = 4563;
             File file = new File ( "Result.txt" ) ;
-            PrintWriter out     = new PrintWriter(socket.getOutputStream());
             BufferedWriter writer = new BufferedWriter ( new FileWriter ( file ));
             writer.write ("" ) ;
             writer.flush () ;
@@ -41,8 +43,10 @@ public class Receive extends Subject implements Runnable {
                         map.put ( substring, true ) ;
                     }
                 }
+                Socket socketsend = new Socket (actioneventframe.Address, PORT);
+                PrintWriter out     = new PrintWriter(socketsend.getOutputStream());
                 for ( String iterateBuffer: map.keySet() ) {
-                    writer1.write ( substring ) ;
+                     writer1.write ( iterateBuffer ) ;
                     writer1.newLine () ;
                 	if (map.get(iterateBuffer) == false) {
                 		System.out.println(iterateBuffer);

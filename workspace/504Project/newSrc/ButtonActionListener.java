@@ -10,11 +10,11 @@ import java.util.Map;
 public class ButtonActionListener implements ActionListener{							//Button action, build a new 
     private Socket socket ;
     private String content;
-    Observer observer;
+    ActionEventFrame observer;
     Map<String,Boolean> map ;
-    private final static int PORT = 4562;//SET A CONSTANT VARIABLE PORT
+    private final static int PORT = 4563;//SET A CONSTANT VARIABLE PORT
 
-    public ButtonActionListener ( Observer observer, Map<String,Boolean> map ) {
+    public ButtonActionListener ( ActionEventFrame observer, Map<String,Boolean> map ) {
         this.observer   = observer;
         this.map        = map ;
     }
@@ -26,7 +26,7 @@ public class ButtonActionListener implements ActionListener{							//Button acti
 			//JOptionPane.showMessageDialog(null, "Button clicked!", "Message", JOptionPane.INFORMATION_MESSAGE);
 			//call the communication function written by Bob here
             content = observer.getTextAndClean();
-
+            observer.Address =  content;
         try {
             System.out.println("You are connecting to " + content);//IF CONNECTED THEN PRINT IT OUT
             socket = new Socket ( content , PORT ) ;

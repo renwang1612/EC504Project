@@ -25,8 +25,8 @@ public class Receive extends Subject implements Runnable {
             writer.write ("" ) ;
             writer.flush () ;
             writer.close() ;
-            while ( true ) {
-                String buffer = null;
+            //while ( true ) {
+                String buffer = "";
                 Scanner in      = new Scanner(socket.getInputStream());
                 BufferedWriter writer1 = new BufferedWriter ( new FileWriter ( file, true ));
                 String input    = in.nextLine();
@@ -43,23 +43,26 @@ public class Receive extends Subject implements Runnable {
                         map.put ( substring, true ) ;
                     }
                 }
-                Socket socketsend = new Socket (actioneventframe.Address, PORT);
+                Socket socketsend = new Socket ("192.168.1.100", PORT);
                 PrintWriter out     = new PrintWriter(socketsend.getOutputStream());
                 for ( String iterateBuffer: map.keySet() ) {
                      writer1.write ( iterateBuffer ) ;
                     writer1.newLine () ;
                 	if (map.get(iterateBuffer) == false) {
-                		System.out.println(iterateBuffer);
+                		//System.out.println(iterateBuffer);
                 		buffer += iterateBuffer + "/t" ;
                 	}
                 }
                 writer1.flush () ;
                 writer1.close() ;
                 if (buffer != null) {
+                    System.out.println(buffer);
                 	out.println(buffer);
+                	System.out.println("println good");
                 	out.flush();
+                	System.out.println("flush good");
                 }
-            }
+            //}
         } catch ( Exception e ) {
             e.printStackTrace () ;
         }

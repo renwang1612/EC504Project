@@ -27,7 +27,7 @@ class Send implements Runnable {
             File file2 = new File ( "tempcheck.txt" ) ;
             // This will reference one line at a time
             String line = null;
-            String buffer = null;
+            String buffer = "";
 
             String serverTalk     = this.content ;
             //try {
@@ -46,7 +46,7 @@ class Send implements Runnable {
                 //System.out.println(buffer);
             for ( String iterateBuffer: map.keySet() ) {
                 buffer += iterateBuffer + "/t" ;
-                System.out.println(iterateBuffer);
+                //System.out.println(iterateBuffer);
                 BufferedWriter writer2 = new BufferedWriter ( new FileWriter ( file2, true ));
                 writer2.write (iterateBuffer) ;
                 writer2.newLine ( ) ;

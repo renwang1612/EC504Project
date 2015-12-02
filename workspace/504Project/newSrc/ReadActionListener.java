@@ -41,7 +41,6 @@ public class ReadActionListener  implements ActionListener{
             }
             
             for ( String buffer: map.keySet()) {
-            	System.out.println(buffer);
                 writer1.write ( buffer + "\n" ) ;
             }
             

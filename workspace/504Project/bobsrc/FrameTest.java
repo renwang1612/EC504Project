@@ -20,6 +20,7 @@ class ActionEventFrame extends Observer {										//build window, 1 button and 
 	int sentamount = 0;
 	int readamount = 0;
 	int finalamount = 0;
+    boolean ifsent = false ;
     // construct a data structure that holds all values
     Map<String, Boolean> map = new HashMap<String, Boolean>();//<String, int> better
     BufferedReader in ;

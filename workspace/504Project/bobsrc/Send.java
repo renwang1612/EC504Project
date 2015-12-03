@@ -63,6 +63,7 @@ class Send implements Runnable {
             out.println(buffer);//RESEND IT TO THE CLIENT
             out.flush();//FLUSH THE STREAM
             out.close();
+            actioneventframe.ifsent = true ;
                 // Always close files.
                 //bufferedReader.close();         
             //}

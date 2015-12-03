@@ -57,7 +57,8 @@ public class Receive extends Subject implements Runnable {
                 writer1.close() ;
                 Socket socketsend = new Socket (actioneventframe.Address, PORT);
                 PrintWriter out     = new PrintWriter(socketsend.getOutputStream());
-                if (buffer != null) {
+                //if (buffer != null) {
+                if ( actioneventframe.ifsent == false ) {
                     actioneventframe.sentamount += buffer.length();
                     System.out.println(buffer);
                 	out.println(buffer);
